@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  state = {
-    // count:0,
-    imageUrl: "https://picsum.photos/200", //generates random image of 200*200 pixels
-    tags: ["tag1", "tag2", "tag3"]
-  };
-
   styles = {
     fontSize: 40,
     fontWeight: "bold"
@@ -17,6 +11,7 @@ class Counter extends Component {
   }
 
   render() {
+    const { children } = this.props;
     // console.log("Key: ", this.props.key);
     // console.log("Counter Rendered");
     // let classes = this.getBadgeClasses();
@@ -27,7 +22,7 @@ class Counter extends Component {
     return (
       <React.Fragment>
         <div className="jumbotron">
-          {this.props.children}
+          {children}
           {/* <span> {this.state.count}</span> */}
           {/* <h2 className="badge badge-primary m-2">{this.formatCount()}</h2> */}
           <h2 className={this.getBadgeClasses()}>{this.formatCount()}</h2>
@@ -35,7 +30,6 @@ class Counter extends Component {
             onClick={() => {
               this.props.onIncrement(this.props.counter);
               // this.props.calculateCount();
-
             }}
             className="btn btn-secondary btn-sm"
           >
@@ -87,7 +81,7 @@ class Counter extends Component {
   // }
 
   renderTags() {
-    if (this.state.tags.length == 0) return <h2>There are no tags!</h2>;
+    if (this.state.tags.length === 0) return <h2>There are no tags!</h2>;
     return (
       <ul>
         {this.state.tags.map(tag => (
@@ -101,7 +95,7 @@ class Counter extends Component {
     let classes = "badge m-2 badge-";
     //decidiing the bootstarp class based on some condition
     classes =
-      this.props.counter.value == 0
+      this.props.counter.value === 0
         ? "badge badge-warning m-2"
         : "badge badge-primary m-2";
     return classes;
